@@ -61,6 +61,10 @@ class FunctionController extends Controller
         $ip_adress = env('APP_IP_ADRESS');
         $function = new SmartflowFunction();
         $function['libelle'] = $request['libelle'];
+
+            if($request['libelle'] == null){
+                return back()->with('error','Le libelle ne doit pas être vide.');
+            }
         $function['enterpriseId'] = session('session.userDto.smartflowEnterprise.enterpriseId');
         $token = session('session.token');
 
@@ -106,10 +110,10 @@ class FunctionController extends Controller
         $ip_adress = env('APP_IP_ADRESS');
         $token = session('session.token');
         $donnees = $request->all();
-        $request->validate([
+         $request->validate([
             "libelle" => "required",
-        ]);
-
+         ]);
+        
         $test = array();
         $test['enterpriseId'] = $request['enterpriseId'];
         $test['libelle'] = $request['libelle'];
@@ -124,6 +128,8 @@ class FunctionController extends Controller
         $test['updatedBy'] = $request['updatedBy'];
         $test['softDeletedBy'] = $request['softDeletedBy'];
 
+
+        
         try {
             $enterpriseId = session('session.userDto.smartflowEnterprise.enterpriseId');
             // $enterprise = Http::withHeaders(['Authorization' => 'Bearer ' . $token,])->put('http://192.168.1.8:8081/odsmartflow/manages-enterprises/find/enterprise/' .$enterpriseId)->json();

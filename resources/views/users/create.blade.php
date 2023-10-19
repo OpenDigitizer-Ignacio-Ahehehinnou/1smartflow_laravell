@@ -47,11 +47,13 @@
         <div class="row">
             <div class="col mb-3">
                 <label class="form-label">Téléphone</label>
-                <input type="text" placeholder="" value="{{ old('phone') }}" oninput="this.className = ''" name="phone">
+                <input type="text" onkeypress="return isNumberKey(event)" placeholder="" value="{{ old('phone') }}" oninput="this.className = ''" name="phone" id="phone">
             </div>
             <div class="col mb-3">
                 <label class="form-label">Email</label>
-                <input type="email" placeholder="" value="{{ old('email') }}" oninput="this.className = ''"  name="email">
+                <input type="email" onblur="validateEmail(this)" placeholder="" value="{{ old('email') }}" oninput="this.className = ''"  name="email" id="email">
+                <p id="email-error-msg" style="color: red;"></p>
+
             </div>
              @error('email')
                                 <div class="text-danger">{{ $message }}</div>
@@ -224,9 +226,36 @@
     }
 </style>
 
-<script>
-    var currentTab = 0; // Current tab is set to be the first tab (0)
-    const submit = document.getElementById('nextBtn');
+    <script>
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+    <script>
+        function validateEmail(input) {
+            var email = input.value;
+            var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+            if (email.match(emailRegex)) {
+                document.getElementById("email-error-msg").innerText = "";
+            } else {
+                document.getElementById("email-error-msg").innerText = "Veuillez saisir une adresse e-mail valide.";
+                setTimeout(function() {
+                    input.value = '';
+                    document.getElementById("email-error-msg").innerText = '';
+                }, 3000);
+            }   
+        }
+    </script>   
+
+    <script>
+             var currentTab = 0; // Current tab is set to be the first tab (0)
+            const submit = document.getElementById('nextBtn');
             showTab(currentTab); // Display the current tab
 
             function showTab(n) {
@@ -313,6 +342,6 @@
             });
 
 
-      </script>
+    </script>
 
 @endsection

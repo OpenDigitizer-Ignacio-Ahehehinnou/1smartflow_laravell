@@ -41,15 +41,16 @@
                     </div>
                     <div class="col mb-3">
                         <label class="form-label">Email</label>
-                        <input type="email" placeholder="" oninput="this.className = ''" name="enterprise_email"
+                        <input type="email" onblur="validateEmail(this)" placeholder="" oninput="this.className = ''" name="enterprise_email"
                             value="{{ old('enterprise_email') }}">
+                        <p id="email-error-msg" style="color: red;font-size:12px;"></p>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col mb-3">
                         <label class="form-label">Ifu</label>
-                        <input type="text" placeholder="" oninput="this.className = ''" name="enterprise_ifu"
+                        <input type="text" onkeypress="return isNumberKey(event)" placeholder="" oninput="this.className = ''" name="enterprise_ifu"
                             value="{{ old('enterprise_ifu') }}">
                     </div>
                     <div class="col mb-3">
@@ -61,7 +62,7 @@
 
                 <div class="mb-3">
                     <label class="form-label">Téléphone</label>
-                    <input type="text" placeholder="00229 62145874" oninput="this.className = ''" name="enterprise_phone"
+                    <input type="text" onkeypress="return isNumberKey(event)" placeholder="00229 62145874" oninput="this.className = ''" name="enterprise_phone"
                         value="{{ old('enterprise_phone') }}">
                 </div>
             </div>
@@ -84,7 +85,7 @@
                 <div class="row">
                     <div class="col mb-3">
                         <label class="form-label">Téléphone</label>
-                        <input type="text" placeholder="" oninput="this.className = ''" name="person_phone"
+                        <input type="text" onkeypress="return isNumberKey(event)" placeholder="" oninput="this.className = ''" name="person_phone"
                             value="{{ old('person_phone') }}">
                     </div>
                     <div class="col mb-3">
@@ -95,8 +96,10 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Email</label>
-                    <input type="email" placeholder="" oninput="this.className = ''" name="person_username"
+                    <input type="email" onblur="validateEmail(this)" placeholder="" oninput="this.className = ''" name="person_username"
                         value="{{ old('person_username') }}">
+                    <p id="email-error-msg" style="color: red;font-size:12px;"></p>
+
                 </div>
             </div>
 
@@ -264,6 +267,34 @@
             color: #0d6efd;
         }
     </style>
+
+
+    <script>
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+    <script>
+        function validateEmail(input) {
+            var email = input.value;
+            var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+            if (email.match(emailRegex)) {
+                document.getElementById("email-error-msg").innerText = "";
+            } else {
+                document.getElementById("email-error-msg").innerText = "Veuillez saisir une adresse e-mail valide.";
+                setTimeout(function() {
+                    input.value = '';
+                    document.getElementById("email-error-msg").innerText = '';
+                }, 3000);
+            }   
+        }
+    </script>   
 
     <script>
         var currentTab = 0; // Current tab is set to be the first tab (0)

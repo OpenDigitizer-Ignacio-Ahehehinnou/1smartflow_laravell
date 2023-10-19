@@ -1,5 +1,23 @@
 @extends('layouts.master')
 @section('content')
+
+    @if (session()->has('error'))
+        <div class="d-flex justify-content-center mb-1 mt-2"  id="msg200">
+            <div class="col-md-7">
+                <div class="alert alert-danger alert-outline-coloured alert-dismissible" role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <div class="alert-icon">
+                        <i class="far fa-fw fa-bell"></i>
+                    </div>
+                    <div class="alert-message">
+                        <b style="font-size: 11px; color: red;">{{ Session::get('error') }}</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+    
+
 <div class="d-flex justify-content-between mb-2">
     <div>
         <h5>Liste des fonctions</h5>
@@ -268,6 +286,11 @@ $('#confirmationModal').on('show.bs.modal', function(e) {
 
             // Récupérer le jeton CSRF depuis la balise meta
             var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+            if(libelle == null){
+               var messageElement = document.getElementById("msg200");
+                messageElement.innerText = "Le libellé est null. Veuillez le remplir.";
+            }
 
             //alert(tableauDonnees)
             // Créez un objet JSON contenant toutes les données

@@ -105,8 +105,9 @@
                         </div>
                         <div class=" col-md-6 mb-1">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" value="{{ $enterprise['email'] }}"
+                            <input type="email" onblur="validateEmail(this)" class="form-control" id="email" value="{{ $enterprise['email'] }}"
                                 name="email">
+                            <p id="email-error-msg" style="color: red;font-size:12px;"></p>
                         </div>
 
                     </div>
@@ -115,12 +116,12 @@
 
                         <div class="col-md-6 mb-1">
                             <label for="editResponsable" class="form-label">Numéro d'identification fiscale</label>
-                            <input type="text" class="form-control" id="ifu" value="{{ $enterprise['ifu'] }}"
+                            <input type="text" onkeypress="return isNumberKey(event)" class="form-control" id="ifu" value="{{ $enterprise['ifu'] }}"
                                 name="ifu">
                         </div>
                         <div class="col-md-6 mb-1">
                             <label for="editResponsable" class="form-label">Téléphone</label>
-                            <input type="text" class="form-control" id="telephone"
+                            <input type="text" onkeypress="return isNumberKey(event)" class="form-control" id="telephone"
                                 value="{{ $enterprise['telephone'] }}" name="telephone">
                         </div>
                     </div>
@@ -194,6 +195,36 @@
         </div>
     </div>
 </div>
+
+
+
+    <script>
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+    <script>
+        function validateEmail(input) {
+            var email = input.value;
+            var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+            if (email.match(emailRegex)) {
+                document.getElementById("email-error-msg").innerText = "";
+            } else {
+                document.getElementById("email-error-msg").innerText = "Veuillez saisir une adresse e-mail valide.";
+                setTimeout(function() {
+                    input.value = '';
+                    document.getElementById("email-error-msg").innerText = '';
+                }, 3000);
+            }   
+        }
+    </script>   
+
 
 <script>
     $(document).ready(function () {

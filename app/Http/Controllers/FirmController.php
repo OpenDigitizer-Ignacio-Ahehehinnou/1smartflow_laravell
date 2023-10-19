@@ -97,6 +97,7 @@ class FirmController extends Controller
 
     public function store(Request $request)
     {
+        //dd($request);
         $ip_adress = env('APP_IP_ADRESS');
         $token = session('session.token');
         $data = $request->all();
@@ -111,12 +112,13 @@ class FirmController extends Controller
         $firm['personFirstname'] = $request['person_firstname'];
         $firm['personLastname'] = $request['person_lastname'];
         $firm['personPassword'] = $request['person_password'];
+
         $firm['personUsername'] = $request['person_username'];
         $firm['personPhone'] = $request['person_phone'];
         $firm['personSignature'] = $request['person_signature'];
         $firm['personFunction'] = $request['person_function'];
         $firm['enterpriseParentCompanyId'] = $enterpriseId;
-        if ($confirm != $request['confirm_password']) {
+        if ($confirm != $request['person_password']) {
             return redirect()->back()->withInput($data)->with('error', "Les mots de passe ne correspondent pas");
         }
         try {
