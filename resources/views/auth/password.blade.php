@@ -62,9 +62,6 @@
 
 
 
-
-
-
 <body data-theme="default" data-layout="fluid" data-sidebar-position="left" data-sidebar-layout="default">
     <main class="d-flex w-100 h-100">
         <div class="container d-flex flex-column">
@@ -143,7 +140,7 @@
                                                 padding: 0px;
                                                 font-size: 12px;
                                                 /*border: 1px solid #ddd;
-                /* background-color: rgba(0, 0, 0, 0.05); */
+                                                /* background-color: rgba(0, 0, 0, 0.05); */
                                                 border-radius: 5px;
                                             }
 
@@ -198,45 +195,6 @@
             }, 15000);
         });
     </script>
-    {{-- <script>
-    const passwordInput = document.getElementById('password');
-    const confirmInput = document.getElementById('confirm');
-    const submitButton = document.getElementById('submitButton');
-    const errorMessage = document.getElementById('error-message');
-
-    function validatePasswords(e) {
-        e.preventDefault();
-        const password = passwordInput.value;
-        const confirm = confirmInput.value;
-        if (password !== confirm) {
-            errorMessage.textContent = "Les mots de passe ne correspondent pas !";
-            setTimeout(function() {
-                errorMessage.textContent = '';
-            }, 5000);
-            return false;
-        }
-        return true;
-    }
-
-    confirmInput.addEventListener('input', function() {
-        if (passwordInput.value === confirmInput.value) {
-            submitButton.disabled = false;
-            errorMessage.textContent = "";
-        } else {
-            submitButton.disabled = true;
-        }
-    });
-
-    confirmInput.addEventListener('blur', function() {
-        if (passwordInput.value !== confirmInput.value) {
-            errorMessage.textContent = "Les mots de passe ne correspondent pas !";
-            setTimeout(function() {
-                errorMessage.textContent = '';
-            }, 5000);
-        }
-    });
-</script>
-onsubmit="return validatePasswords()" --}}
 
     <script>
         const passwordInput = document.getElementById('password');
@@ -272,8 +230,6 @@ onsubmit="return validatePasswords()" --}}
             submitButton.disabled = !allConditionsMet;
         });
     </script>
-
-
 
 </body>
 

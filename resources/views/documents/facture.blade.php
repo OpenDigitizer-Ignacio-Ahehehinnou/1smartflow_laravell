@@ -182,11 +182,10 @@
                     </div>
 
 
-
                     <br><br><br><br><br>
 
                     <div>
-                        <hr />
+                        <hr/>
                         <span style="float: left;margin-right: 10px;">
                             <h4 class="text-muted">Document de:</h4>
                             <p>
@@ -213,7 +212,7 @@
                             </p>
                         </span>
                     </div>
-
+                    
                     <div id="formio"></div>
                     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                     <div class="row">
@@ -227,7 +226,6 @@
                             <input type="hidden"
                                 value="{{ $resp['listOfSmartflowDocumentSuccessAgreement'][0]['documentAgreementSignature'] }}" />
                             <h6>{{ $resp1 }} {{ $resp2 }}</h6>
-
                         </div>
                         {{-- @endforeach --}}
                     </div>
@@ -237,7 +235,7 @@
         </div>
     </div>
 
-    <hr />
+    <hr/>
     <script>
         var content = $('#content2').val();
         var submit = $('#submit2').val();

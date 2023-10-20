@@ -11,7 +11,7 @@
             <div style="height: 0.3rem; width:4rem; background-color: #222e3c"></div>
         </div>
         <a href="{{ route('documents.pdf', $document['documentId']) }}"
-            class="btn btn-success btn-sm">Telecharger <b>PDF</b></a>
+            class="btn btn-success btn-sm">Telecharger<b>PDF</b></a>
     </div>
     <div class="row ">
         <div class="d-flex justify-content-center">

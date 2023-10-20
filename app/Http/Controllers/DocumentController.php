@@ -11,6 +11,9 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
+use Spatie\Browsershot\Browsershot;
+use Illuminate\Support\Facades\Storage;
+
 
 class DocumentController extends Controller
 {
@@ -66,7 +69,7 @@ class DocumentController extends Controller
     {
         $ip_adress = env('APP_IP_ADRESS');
         $create = $request->all();
-        dd($create);
+       // dd($create);
         $token = session('session.token');
 
         $content = $create['content'];
@@ -271,7 +274,7 @@ class DocumentController extends Controller
             $document = $response['data'];
             if ($response['message'] == "Access denied") {
                 return view('errors.401');
-            } elseif ($response['message'] == "Authentication failed") {
+            } elseif($response['message'] == "Authentication failed") {
                 return view("auth.login");
             }
             $formId = $document['formId'];
@@ -468,6 +471,22 @@ class DocumentController extends Controller
             throw new Exception("Une erreur est survenue lors du téléchargement de la liste");
         }
     }
+
+    // public function pdfDocument($document)
+    // {
+    //     //dd($document);
+    //     $url = route('documents.pdf', ['document' => $document]); // Assurez-vous de passer le paramètre dans la route
+
+
+    //     $fileName = 'C:\Users\DIAS\Downloads\Nouveau dossier\example.png'; // Chemin complet vers le dossier Téléchargements
+
+    //     Browsershot::url($url)
+    //         ->windowSize(1920, 1080) // Taille de la fenêtre du navigateur
+    //         ->save($fileName); // Enregistre l'image dans le dossier Téléchargements
+
+    //     return view('documents.preview');
+    // }
+
 
     public function search1(Request $request)
     {
