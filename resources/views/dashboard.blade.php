@@ -41,25 +41,5 @@
         </div>
     </div> --}}
 
-    <form method="post" action="">
-        @csrf
-        @method("POST")
-        <input type="text" name="test" id="test">
-        <button id="nextBtn" type="button">Enregistrer</button>
-    </form>
-
-    <script>
-        $(() => {
-
-            var save = document.getElementById('nextBtn');
-            save.addEventListener('click', function() {
-                var title = $('#test').val();
-                console.log(title);
-                throw new Error("La condition est vraie, le code s'arrête ici.");
-
-                });
-
-        });
-    </script>
 
 @endsection

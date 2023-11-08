@@ -12,7 +12,7 @@
     <input id="agreeLevelNumber" name="agreeLevelNumber" type="hidden" value="{{ $document['agreeLevelNumber'] }}" />
     <input id="actualAgreeLevel" name="actualAgreeLevel" type="hidden" value="{{ $document['actualAgreeLevel'] }}" />
     <input id="userIdForLog" name="userIdForLog" type="hidden" value="{{ $document['userIdForLog'] }}" />
-
+    <input id="code" name="code" type="hidden" value="{{ $document['code'] }}" />
     <h5>Modifier le document</h5>
     <div class="mb-4" style="height: 0.3rem; width:4rem; background-color: #222e3c"></div>
 
@@ -41,6 +41,7 @@
         var agreeLevelNumber = $('#agreeLevelNumber').val();
         var actualAgreeLevel = $('#actualAgreeLevel').val();
         var userIdForLog = $('#userIdForLog').val();
+        var code = $('#code').val();
         let data = {};
         $(() => {
             var form = JSON.parse(content);
@@ -81,10 +82,11 @@
                         status: status,
                         agreeLevelNumber: agreeLevelNumber,
                         actualAgreeLevel: actualAgreeLevel,
-                        userIdForLog: userIdForLog
+                        userIdForLog: userIdForLog,
+                        code: code
                     },
                     success: function(data) {
-                        window.location = "http://127.0.0.1:8000/document/created?page=0";
+                        window.location = "http://127.0.0.1:8000/document/created/0";
                     }
                 });
             });

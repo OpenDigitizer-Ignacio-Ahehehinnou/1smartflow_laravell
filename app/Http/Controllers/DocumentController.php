@@ -17,27 +17,6 @@ use Illuminate\Support\Facades\Storage;
 
 class DocumentController extends Controller
 {
-    //
-    // public function create($formId)
-    // {
-    //     $ip_adress = env('APP_IP_ADRESS');
-    //     $token = session('session.token');
-    //     $personId = session('session.userDto.personId');
-
-    //     try {
-    //         $response = Http::withHeaders(['Authorization' => 'Bearer ' . $token])->get('http://' . $ip_adress . '/odsmartflow/manages-forms/one/form/' . $formId . '/byUserAccess/' . $personId)->json();
-    //         $myform = $response['data'];
-    //         if ($response['message'] == "Access denied") {
-    //             return view('errors.401');
-    //         } elseif ($response['message'] == "Authentication failed") {
-    //             return view("auth.login");
-    //         }
-    //     } catch (Exception $e) {
-    //         return new Response(500);
-    //     }
-    //     return view('documents.create', compact('myform'));
-    // }
-
     public function create($formId)
     {
         $ip_adress = env('APP_IP_ADRESS');
@@ -49,13 +28,14 @@ class DocumentController extends Controller
             $myform = $response['data'];
             if ($response['message'] == "Access denied") {
                 return view('errors.401');
-            }elseif($response['message'] == "Authentication failed"){
+            } elseif ($response['message'] == "Authentication failed") {
                 return view("auth.login");
             }
         } catch (Exception $e) {
             return new Response(500);
         }
-        return view('test', compact('myform'));
+
+        return view('documents.create', compact('myform'));
     }
 
 

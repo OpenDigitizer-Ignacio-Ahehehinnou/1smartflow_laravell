@@ -48,8 +48,10 @@
                                     class="fas fa-eye"></i></a>
                             <a title="Signer" data-key="{{ $item['documentId'] }}" data-level="{{ $item['actualAgreeLevel'] }}" class="btn btn-info mr-1" data-bs-toggle="modal"
                                 data-bs-target="#signModal"><i class="fas fa-pen-alt"></i></a>
+                                @if(session('session.userDto.signature') !== null)
                             <a title="Valider" data-key="{{ $item['documentId'] }}" data-level="{{ $item['actualAgreeLevel'] }}" class="btn btn-success mr-1" data-bs-toggle="modal"
                                 data-bs-target="#validModal"><i class="fas fa-check-circle"></i></a>
+                                @endif
                             <a title="Rejeter" data-key="{{ $item['documentId'] }}" data-level="{{ $item['actualAgreeLevel'] }}" class="btn btn-danger"
                                 data-bs-toggle="modal" data-bs-target="#rejectModal"><i class="fas fa-times"></i></a>
                         </td>
@@ -57,11 +59,14 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="mb-1" style="margin-top: 0.5rem;">
+            @if($numberOfElements == 0)
+                <p>Pas d'éléments</p>
+                <hr>
+                @endif
+        </div>
         <div class="d-flex justify-content-between mt-2">
             <div class="">
-                @if($numberOfElements == 0)
-                <p>Pas d'éléments</p>
-                @endif
 
                 @if ($numberOfElements != 0)
                 <p>Affichage de 1 à {{ $numberOfElements}} lignes</p>

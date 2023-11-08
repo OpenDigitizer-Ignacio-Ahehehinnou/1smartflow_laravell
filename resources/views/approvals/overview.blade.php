@@ -12,7 +12,7 @@
     </div>
     <div class="d-flex justify-content-center">
     <div class="card" style="width: 21cm;">
-        <div class="card-body">
+         <div class="card-body">
             <h6>Rejeté par:</h6>
             <p>{{ $document['rejecteDocumentAgreementDTO']['validatorLastName'] }} {{ $document['rejecteDocumentAgreementDTO']['validatorFirstName'] }}</p>
             <h6 style="color: red">Motif du rejet</h6>
@@ -69,9 +69,6 @@
                     <hr class="my-4" />
                     <div class="text-center">
                         <p class="text-sm">
-                            <strong>Extra note:</strong>
-                            Please send all items at the same time to the shipping address.
-                            Thanks in advance.
                         </p>
 
                     </div>

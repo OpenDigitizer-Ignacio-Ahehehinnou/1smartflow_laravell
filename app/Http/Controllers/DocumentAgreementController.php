@@ -345,15 +345,16 @@ class DocumentAgreementController extends Controller
         $ip_adress = env('APP_IP_ADRESS');
         $token = session('session.token');
         try {
-            $response = Http::withHeaders(['Authorization' => 'Bearer ' . $token])->get('http://' . $ip_adress . '/odsmartflow/manages-documents/exportPrepare/document/' . $documentId)->json();
+            $response = Http::withHeaders(['Authorization' => 'Bearer ' . $token])->get('http://' . $ip_adress . '/odsmartflow/manages-documents/one/document/' . $documentId)->json();
             $document = $response['data'];
+            //dd($document);
             if ($response['message'] == "Access denied") {
                 return view('errors.401');
             } elseif ($response['message'] == "Authentication failed") {
                 return view("auth.login");
             }
             $formId = $response['data']['formId'];
-            $approvals = $response['data']['listOfSmartflowDocumentSuccessAgreement'];
+            //$approvals = $response['data']['listOfSmartflowDocumentSuccessAgreement'];
             $data = Http::withHeaders(['Authorization' => 'Bearer ' . $token])->get('http://' . $ip_adress . '/odsmartflow/manages-forms/one/form/' . $formId)->json();
             $form = $data['data'];
             if ($data['message'] == "Access denied") {
@@ -364,6 +365,6 @@ class DocumentAgreementController extends Controller
         } catch (Exception $e) {
             return new Response(500);
         }
-        return view('approvals.overview', compact('document', 'form', 'approvals'));
+        return view('approvals.overview', compact('document', 'form'));
     }
 }

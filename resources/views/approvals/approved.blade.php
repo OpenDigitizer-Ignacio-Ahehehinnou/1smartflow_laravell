@@ -28,7 +28,7 @@
         <h5>Documents validés</h5>
         <div style="height: 0.3rem; width:4rem; background-color: #222e3c"></div>
     </div>
-    
+
     <div class="card mt-2" style="padding: 1.5rem">
         <table class="table table-striped" style="width:100%">
             <div class="d-flex justify-content-end">
@@ -64,11 +64,14 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="mb-1" style="margin-top: 0.5rem;">
+            @if($numberOfElements == 0)
+                <p>Pas d'éléments</p>
+                <hr>
+                @endif
+        </div>
         <div class="d-flex justify-content-between mt-2">
             <div class="">
-                @if($numberOfElements == 0)
-                <p>Pas d'éléments</p>
-                @endif
 
                 @if ($numberOfElements != 0)
                 <p>Affichage de 1 à {{ $numberOfElements}} lignes</p>

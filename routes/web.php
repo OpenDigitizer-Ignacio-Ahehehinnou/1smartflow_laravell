@@ -203,6 +203,8 @@ Route::get('/form/ignacio', [FormController::class, "ignacio"])->name('form.igna
 
 Route::post('/form/delete', [FormController::class, "delete"])->name('form.delete');
 
+Route::post('/form/update', [FormController::class, "update"])->name('form.update');
+
 Route::get('/form/edit/{formId}', [FormController::class, "edit"])->name('form.edit');
 
 Route::post('/form/search2', [FormController::class, "search"])->name('form.search');

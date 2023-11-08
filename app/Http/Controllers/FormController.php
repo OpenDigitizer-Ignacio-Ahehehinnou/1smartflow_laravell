@@ -182,7 +182,48 @@ class FormController extends Controller
 
     public function edit($formId)
     {
-        return view('forms.edit', compact('formId'));
+        $ip_adress = env('APP_IP_ADRESS');
+        $token = session('session.token');
+        $personId = session('session.userDto.personId');
+        try{
+            $response = Http::withHeaders(['Authorization' => 'Bearer ' . $token])->get('http://' . $ip_adress . '/odsmartflow/manages-forms/one/form/' . $formId . '/byUserAccess/' . $personId)->json();
+            if ($response['message'] == "Access denied") {
+                return view('errors.401');
+            } elseif ($response['message'] == "Authentication failed") {
+                return view("auth.login");
+            }
+            $form = $response['data'];
+        } catch(Exception $e) {
+            return new Response(500);
+        }
+        return view('forms.edit', compact('formId', 'form'));
+    }
+
+    public function update(Request $request){
+        $ip_adress = env('APP_IP_ADRESS');
+        $update = $request->all();
+        $token = session('session.token');
+        $form = new SmartflowForm();
+        $form['formId'] = $update['formId'];
+        $form['name'] = $update['title'];
+        $form['content'] = $update['content'];
+        $form['code'] = $update['code'];
+        $form['status'] = $update['status'];
+        $form['userIdForLog'] = $update['userIdForLog'];
+        $form['agreeLevelNumber'] = $update['agreeLevelNumber'];
+        $form['createdBy'] = $update['createdBy'];
+        $form['createdAt'] = $update['createdAt'];
+        $form['deletedFlag'] = $update['deletedFlag'];
+        try {
+            $response = Http::withHeaders(['Authorization' => 'Bearer ' . $token])->put('http://' .$ip_adress . '/odsmartflow/manages-forms/update/form', $form);
+            if($response['message'] == "Access denied") {
+                return view('errors.401');
+            } elseif ($response['message'] == "Authentication failed") {
+                return view("auth.login");
+            }
+        } catch (Exception $e) {
+            return new Response(500);
+        }
     }
 
     public function search(Request $request)
