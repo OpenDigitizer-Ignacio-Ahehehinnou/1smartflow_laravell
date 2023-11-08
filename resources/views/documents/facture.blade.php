@@ -20,8 +20,6 @@
     <link rel='stylesheet' href='https://cdn.form.io/formiojs/formio.full.min.css'>
     <script src='https://cdn.form.io/formiojs/formio.full.min.js'></script>
 
-
-
     <style>
         body {
             font-family: sans-serif;
@@ -151,8 +149,6 @@
         }
     </style>
 
-
-
 </head>
 
 <body>
@@ -179,11 +175,10 @@
                             <p>{{ \Carbon\Carbon::createFromTimestampMs($resp['createdAt'])->format('d-m-Y H:i:s') }}
                             </p>
                         </span>
-                    </div>
-
+                    </div>  
 
                     <br><br><br><br><br>
-
+                    
                     <div>
                         <hr/>
                         <span style="float: left;margin-right: 10px;">

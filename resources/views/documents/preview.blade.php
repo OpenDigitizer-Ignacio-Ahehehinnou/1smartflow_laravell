@@ -10,10 +10,11 @@
             <h5>Apercu</h5>
             <div style="height: 0.3rem; width:4rem; background-color: #222e3c"></div>
         </div>
-        <a href="{{ route('documents.pdf', $document['documentId']) }}"
-            class="btn btn-success btn-sm">Telecharger<b>PDF</b></a>
+        {{-- <a href="{{ route('documents.pdf', $document['documentId']) }}"
+            class="btn btn-success btn-sm">Telecharger<b>PDF</b></a> --}}
+            <button id="btn-print-this" onclick="exportToPDF()" class="btn btn-danger btn-lg"> Génerer PDF</button>
     </div>
-    <div class="row ">
+    <div class="row" id="ignacio">
         <div class="d-flex justify-content-center">
             <div class="card" style="width: 21cm;">
                 <div class="card-body m-sm-3 m-md-5">
@@ -83,7 +84,22 @@
             </div>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
+    
+       <script>
+    function exportToPDF() {
+    const element = document.getElementById('ignacio'); // Remplacez 'content' par l'ID de votre élément
+    html2pdf()
+        .from(element)
+        .save('Document.pdf'); // Le fichier sera téléchargé avec le nom 'export.pdf'
+}
+
+</script>
+    
+     
     <script>
         var content = $('#content').val();
         var submit = $('#submit').val();

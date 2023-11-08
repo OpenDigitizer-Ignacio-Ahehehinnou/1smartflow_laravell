@@ -37,6 +37,10 @@
 			@include('partials.footer')
 		</div>
 	</div>
+	{{-- <script src="../../jason/printThis.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.js" integrity="sha512-Fd3EQng6gZYBGzHbKd52pV76dXZZravPY7lxfg01nPx5mdekqS8kX4o1NfTtWiHqQyKhEGaReSf4BrtfKc+D5w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
 	<script src="{{asset('js/app.js')}}"></script>
     <script src="{{asset('js/form.js')}}"></script>
     <script src="{{asset('js/formio.js')}}"></script>
