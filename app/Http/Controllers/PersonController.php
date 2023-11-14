@@ -25,7 +25,6 @@ class PersonController extends Controller
         }
         try {
             $response = Http::withHeaders(['Authorization' => 'Bearer ' . $token])->get('http://' . $ip_adress . '/odsmartflow/manages-persons/list/paginate/byEnterprise/' . $enterpriseId . '?page=' . $page)->json();
-            //dd($response);
             if ($response['message'] == "Access denied") {
                 return view('errors.401');
             }elseif($response['message'] == "Authentication failed"){

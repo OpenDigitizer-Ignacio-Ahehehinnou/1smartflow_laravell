@@ -121,7 +121,6 @@ class FormController extends Controller
         }elseif($form_response['message'] == "Authentication failed"){
             return view("auth.login");
         }
-
         $approval = $create['approvals'];
         $agreement = new SmartflowFormAgreement();
         $agreement['formId'] = $form_response['data']['formId'];

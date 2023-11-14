@@ -331,6 +331,7 @@ class DocumentController extends Controller
             } elseif ($response['message'] == "Authentication failed") {
                 return view("auth.login");
             }
+            //dd($document);
             $formId = $document['formId'];
             $data = Http::withHeaders(['Authorization' => 'Bearer ' . $token])->get('http://' . $ip_adress . '/odsmartflow/manages-forms/one/form/' . $formId)->json();
             $form = $data['data'];
@@ -380,6 +381,7 @@ class DocumentController extends Controller
         $document['documentId'] = $update['documentId'];
         $document['content'] = $update['content'];
         $document['name'] = $update['name'];
+        $document['code'] = $update['code'];
         $document['formId'] = $update['formId'];
         $document['createdBy'] = $update['createdBy'];
         $document['createdAt'] = $update['createdAt'];
@@ -388,6 +390,7 @@ class DocumentController extends Controller
         $document['agreeLevelNumber'] = $update['agreeLevelNumber'];
         $document['actualAgreeLevel'] = $update['actualAgreeLevel'];
         $document['userIdForLog'] = $update['userIdForLog'];
+        //dd($document);
         try {
             $response = Http::withHeaders(['Authorization' => 'Bearer ' . $token])->put('http://' . $ip_adress . '/odsmartflow/manages-documents/update/document', $document);
             if ($response['message'] == "Access denied") {

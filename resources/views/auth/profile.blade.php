@@ -28,7 +28,11 @@
                     <p><b>Téléphone : </b>{{ $telephone }} </p>
                     <p><b>Signature : </b> </p>
 
+<<<<<<< HEAD
                     <img id="signature-image" src="" alt="Signature">
+=======
+                    <img id="signature-image" src="{{ $signature }}" alt="Signature">
+>>>>>>> master
 
                 </div>
             </div>
@@ -56,9 +60,12 @@
         </div> --}}
             <button id="clear-signature" class="btn btn-danger btn-sm">Effacer la signature</button>
             <button id="save-signature" class="btn btn-success btn-sm">Enregistrer la signature</button>
+<<<<<<< HEAD
 
             <button id="get-signature">Récupérer la Signature</button>
 
+=======
+>>>>>>> master
         </div>
 
     </div>

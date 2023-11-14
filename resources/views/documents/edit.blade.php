@@ -6,6 +6,10 @@
     <input id="name" name="name" type="hidden" value="{{ $document['name'] }}" />
     <input id="formId" name="formId" type="hidden" value="{{ $document['formId'] }}" />
     <input id="createdBy" name="createdBy" type="hidden" value="{{ $document['createdBy'] }}" />
+<<<<<<< HEAD
+=======
+    <input id="createdAt" name="createdAt" type="hidden" value="{{ $document['createdAt'] }}" />
+>>>>>>> master
     <input id="submit" name="title" type="hidden" value="{{ $document['createdAt'] }}" />
     <input id="deletedFlag" name="deletedFlag" type="hidden" value="{{ $document['deletedFlag'] }}" />
     <input id="status" name="status" type="hidden" value="{{ $document['status'] }}" />
