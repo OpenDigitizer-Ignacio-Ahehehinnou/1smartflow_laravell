@@ -368,7 +368,7 @@ class AuthController extends Controller
             //dd($response, $entreprises,$statusCode);
             return new Response(200);
         } catch (Exception $e) {
-            dd(e);
+            dd($e);
             return new Response(500);
         }
 
@@ -437,7 +437,7 @@ class AuthController extends Controller
          if($request['password'] != $request['confirm']){
             return view('auth.password',['personId' => $personId, 'error' => 'Les mots de passe ne correspondent pas.']);
         }
-        
+
         $passwordb['password'] = $request['password'];
 
         $passwordb['personId'] = $request['personId'];
