@@ -151,22 +151,24 @@ class RoleController extends Controller
         $role['softDeletedBy'] = null;
         $role['deletedFlag'] = "a";
         $role['userIdForLog'] = null;
+        //dd($role);
 
         try {
 
             $enterpriseId = session('session.userDto.smartflowEnterprise.enterpriseId');
-
             // Effectuez la requête HTTP avec la méthode PUT et incluez les données mises à jour
             $response = Http::withHeaders(['Authorization' => 'Bearer ' . $token])
                 ->put('http://' . $ip_adress . '/odsmartflow/manages-roles/update', $role);
+               // dd($response);
             if ($response['code'] == "401") {
                 return view('errors.401');
             } elseif ($response['message'] == "Access Denied: You don't have the required access.") {
                 return view("auth.login");
             }
+
             $entreprises = $response->json();
             $statusCode = $response->status();
-            //return new Response(200);
+            return new Response(200);
         } catch (Exception $e) {
             //dd(0);
             return new Response(500);

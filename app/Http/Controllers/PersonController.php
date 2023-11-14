@@ -161,8 +161,15 @@ class PersonController extends Controller
                 return view('errors.401');
             }elseif($response['message'] == "Authentication failed"){
                 return view("auth.login");
+            }else{
+                //return view("user.index");
+                return redirect()->route('user.index',['page'=>0]);
+
             }
         } catch (Exception $e) {
+            return redirect()->route('user.index',['page'=>0]);
+
+            //dd($e);
             return new Response(500);
         }
         return Redirect::to('/user/index/0');

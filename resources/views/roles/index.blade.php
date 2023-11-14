@@ -279,7 +279,8 @@
                 var label = $(this).data("label");
                 var description = $(this).data("description");
                 var rights = $(this).data('rights');
-                //alert(rights)
+                // alert(rights)
+                // alert(roleId)
 
                 // Injectez la valeur du libellé dans l'input "libelle" du modal
                 $("#label").val(label);
@@ -364,11 +365,12 @@
                 var deletedFlag = $("#deletedFlag").val();
                 var listOfSmartflowRightId = $("#rights").val();
 
-
+                // alert(description)
+                // alert(label)
                 // Récupérer le jeton CSRF depuis la balise meta
                 var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-                //alert(tableauDonnees)
+               // alert(tableauDonnees)
                 // Créez un objet JSON contenant toutes les données
                 var donneesAEnvoyer = {
                     _token: csrfToken,
@@ -386,6 +388,7 @@
                     createdAt,
                     createdBy
                 };
+                //alert(donneesAEnvoyer)
 
                 // Envoyez les données au contrôleur via une requête AJAX
                 $.ajax({

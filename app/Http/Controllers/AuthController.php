@@ -437,7 +437,6 @@ class AuthController extends Controller
          if($request['password'] != $request['confirm']){
             return view('auth.password',['personId' => $personId, 'error' => 'Les mots de passe ne correspondent pas.']);
         }
-
         $passwordb['password'] = $request['password'];
 
         $passwordb['personId'] = $request['personId'];
