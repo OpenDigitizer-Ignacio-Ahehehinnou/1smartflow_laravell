@@ -12,7 +12,7 @@
         </div>
         {{-- <a href="{{ route('documents.pdf', $document['documentId']) }}"
             class="btn btn-success btn-sm">Telecharger<b>PDF</b></a> --}}
-            <button id="btn-print-this" onclick="exportToPDF()" class="btn btn-danger btn-lg"> Génerer PDF</button>
+            <button id="btn-print-this" onclick="exportToPDF()" class="btn btn-success">Télécharger <i class="fas fa-download"></i> </button>
     </div>
     <div class="row" id="ignacio">
         <div class="d-flex justify-content-center">
@@ -88,7 +88,7 @@
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.min.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-    
+
        <script>
     function exportToPDF() {
     const element = document.getElementById('ignacio'); // Remplacez 'content' par l'ID de votre élément
@@ -98,8 +98,8 @@
 }
 
 </script>
-    
-     
+
+
     <script>
         var content = $('#content').val();
         var submit = $('#submit').val();

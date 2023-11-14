@@ -58,16 +58,6 @@
                 </select>
             </div>
             </div>
-            {{-- <div class="row">
-            <div class="col mb-3">
-                <label class="form-label">Mot de passe</label>
-                <input type="password" class="form-control" name="password">
-            </div>
-            <div class="col mb-3">
-                <label class="form-label">Confirmation</label>
-                <input type="password" class="form-control" name="confirm">
-            </div>
-            </div>  --}}
             <button type="submit" class="btn btn-primary">Enregistrer</button>
         </form>
     </div>

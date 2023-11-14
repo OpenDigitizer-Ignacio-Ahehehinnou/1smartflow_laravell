@@ -16,7 +16,7 @@
             </div>
         </div>
     @endif
-    
+
 
 <div class="d-flex justify-content-between mb-2">
     <div>
@@ -119,7 +119,7 @@
                 <div class="modal-body">
                     <div class="mb-1">
                         <label for="function" class="form-label">Libellé</label>
-                        <input type="text" class="form-control" id="function" name="libelle">
+                        <input type="text" class="form-control" required="true" id="function" name="libelle">
                     </div>
 
                 </div>

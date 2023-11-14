@@ -105,7 +105,7 @@
 
     <!-- Modal de modification -->
     <div class="modal fade" id="roleModale" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editModalLabel">Modifier rôle</h5>
@@ -403,7 +403,7 @@
                             <strong>Une erreur s'est produite</strong> veuillez réessayez.
 
                             </div>`)) : ($('#msg200').html(`<div class='alert alert-success text-center' role='alert'>
-                            <strong> Le rôle a été modifiée avec succès. </strong>
+                            <strong> Le rôle a été modifié avec succès. </strong>
 
                             </div>`));
                         }

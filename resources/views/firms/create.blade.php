@@ -73,12 +73,12 @@
                 <div class="row">
                     <div class="col mb-3">
                         <label class="form-label">Nom</label>
-                        <input type="text" placeholder="" oninput="this.className = ''" name="person_lastname"
+                        <input type="text" placeholder=""  onkeypress="return isLetterKey(event)"  oninput="this.className = ''" name="person_lastname"
                             value="{{ old('person_lastname') }}">
                     </div>
                     <div class="col mb-3">
                         <label class="form-label">Prénom(s)</label>
-                        <input type="text" placeholder="" oninput="this.className = ''" name="person_firstname"
+                        <input type="text" placeholder=""  onkeypress="return isLetterKey(event)"  oninput="this.className = ''" name="person_firstname"
                             value="{{ old('person_firstname') }}">
                     </div>
                 </div>
@@ -90,13 +90,13 @@
                     </div>
                     <div class="col mb-3">
                         <label class="form-label">Function</label>
-                        <input type="text" placeholder="" oninput="this.className = ''" name="person_function"
+                        <input type="text" onkeypress="return isLetterKey(event)" placeholder="" oninput="this.className = ''" name="person_function"
                             value="{{ old('person_function') }}">
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" onblur="validateEmail(this)" placeholder="" oninput="this.className = ''" name="person_username"
+                    <label for="admin_email" class="form-label">Email</label>
+                    <input id="admin_email" type="email" onblur="validateEmail(this)" placeholder="" oninput="this.className = ''" name="person_username"
                         value="{{ old('person_username') }}">
                     <p id="email-error-msg" style="color: red;font-size:12px;"></p>
 
@@ -277,9 +277,24 @@
             }
             return true;
         }
-    </script>
 
+        function isLetterKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        // Permet les lettres majuscules et minuscules (A-Z, a-z) ainsi que les caractères spéciaux
+        if ((charCode < 65 || (charCode > 90 && charCode < 97) || charCode > 122) && !isSpecialCharacter(charCode)) {
+            return false;
+        }
+        return true;
+    }
+
+    function isSpecialCharacter(charCode) {
+        // Liste de codes de caractères spéciaux que vous souhaitez autoriser
+        var specialCharacters = [32, 33, 64, 35, 36, 37, 94, 38, 42, 40, 41, 95, 43, 45, 61, 123, 125, 91, 93, 58, 59, 34, 39, 60, 62, 44, 46, 47, 63];
+        return specialCharacters.includes(charCode);
+    }
+    </script>
     <script>
+
         function validateEmail(input) {
             var email = input.value;
             var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -292,9 +307,9 @@
                     input.value = '';
                     document.getElementById("email-error-msg").innerText = '';
                 }, 3000);
-            }   
+            }
         }
-    </script>   
+    </script>
 
     <script>
         var currentTab = 0; // Current tab is set to be the first tab (0)
@@ -385,6 +400,6 @@
 
         });
 
-        
+
     </script>
 @endsection

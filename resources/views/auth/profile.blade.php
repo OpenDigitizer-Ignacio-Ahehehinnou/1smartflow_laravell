@@ -121,7 +121,6 @@
             $('#save-signature').on('click', function() {
                 //  const signatureDataURL = canvas.toDataURL();
                 var id= $('#id').val();
-                alert(id)
                 const signatureDataURL = canvas.toDataURL();
                 const randomSignature = generateRandomSignature();
 
@@ -184,9 +183,7 @@
         $('#get-signature').on('click', function() {
             // Récupérez l'identifiant de la signature à partir d'une source appropriée
             var id = $('#id').val();
-            alert(id)
             const signatureId = id /* Récupérez l'identifiant de la signature que vous souhaitez afficher */ ;
-            //alert(signatureId)
             var url = "{{ route('signature.recup') }}";
 
             // Effectuez une requête AJAX de type GET pour récupérer la signature
@@ -197,7 +194,6 @@
                         id: id
                     },
                 success: function(response) {
-                    //alert(20)
                     // Vérifiez si la réponse contient une signature
                     if (response.signature) {
                         // Récupérez la signature (probablement une URL de données)
@@ -210,9 +206,9 @@
                         imageElement.src = signatureDataURL;
                         imageElement.alt = 'Signature'; // Texte alternatif pour l'image
 
-                        // Facultatif : affichez un message de succès ou effectuez d'autres actions
-                        alert('Signature récupérée avec succès');
-                        }else{ alert("tu es un boss")}
+                        }else{
+
+                        }
                     } else {
                         // La réponse ne contient pas de signature, affichez un message d'erreur
                         console.error('La signature n\'a pas pu être récupérée.');
