@@ -68,7 +68,7 @@
                                         <input id="signature" type="hidden" name="person_signature" value="" />
                                         <!-- start step indicators -->
                                         <div class="form-header d-flex mb-4">
-                                            <span class="stepIndicator">Filiale</span>
+                                            <span class="stepIndicator">Entreprise</span>
                                             <span class="stepIndicator">Administrateur</span>
                                             <span class="stepIndicator">Signature</span>
                                             <span class="stepIndicator">Mot de passe</span>
@@ -86,15 +86,16 @@
                                                 </div>
                                                 <div class="col mb-3">
                                                     <label class="form-label">Email</label>
-                                                    <input type="email" placeholder="" oninput="this.className = ''"
+                                                    <input type="email" placeholder="" oninput="this.className = ''" onblur="validateEmail(this)"
                                                         name="enterprise_email" value="{{ old('enterprise_email') }}">
+                                                        <p id="email-error-msg" style="color: red;font-size:12px;"></p>
                                                 </div>
                                             </div>
 
                                             <div class="row">
                                                 <div class="col mb-3">
                                                     <label class="form-label">Ifu</label>
-                                                    <input type="text" placeholder="" oninput="this.className = ''"
+                                                    <input type="text" placeholder="" oninput="this.className = ''" onkeypress="return isNumberKey(event)"
                                                         name="enterprise_ifu" value="{{ old('enterprise_ifu') }}">
                                                 </div>
                                                 <div class="col mb-3">
@@ -106,7 +107,7 @@
 
                                             <div class="mb-3">
                                                 <label class="form-label">Téléphone</label>
-                                                <input type="text" placeholder="" oninput="this.className = ''"
+                                                <input type="text" placeholder="" oninput="this.className = ''" onkeypress="return isNumberKey(event)"
                                                     name="enterprise_phone" value="{{ old('enterprise_phone') }}">
                                             </div>
                                         </div>
@@ -117,13 +118,13 @@
                                             <div class="row">
                                                 <div class="col mb-3">
                                                     <label class="form-label">Nom</label>
-                                                    <input type="text" placeholder=""
+                                                    <input type="text" placeholder="" onkeypress="return isLetterKey(event)"
                                                         oninput="this.className = ''" name="person_lastname"
                                                         value="{{ old('person_lastname') }}">
                                                 </div>
                                                 <div class="col mb-3">
                                                     <label class="form-label">Prénom(s)</label>
-                                                    <input type="text" placeholder=""
+                                                    <input type="text" placeholder="" onkeypress="return isLetterKey(event)"
                                                         oninput="this.className = ''" name="person_firstname"
                                                         value="{{ old('person_firstname') }}">
                                                 </div>
@@ -131,7 +132,7 @@
                                             <div class="row">
                                                 <div class="col mb-3">
                                                     <label class="form-label">Téléphone</label>
-                                                    <input type="text" placeholder=""
+                                                    <input type="text" placeholder="" onkeypress="return isNumberKey(event)"
                                                         oninput="this.className = ''" name="person_phone"
                                                         value="{{ old('person_phone') }}">
                                                 </div>
@@ -144,8 +145,9 @@
                                             </div>
                                             <div class="col mb-3">
                                                 <label class="form-label">Email</label>
-                                                <input type="email" placeholder="" oninput="this.className = ''"
+                                                <input type="email" placeholder="" onblur="validateEmail(this)" oninput="this.className = ''"
                                                     name="person_username" value="{{ old('person_username') }}">
+                                                    <p id="email-error-msg" style="color: red;font-size:12px;"></p>
                                             </div>
                                         </div>
 
@@ -346,6 +348,49 @@
             color: #0d6efd;
         }
     </style>
+
+<script>
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
+
+    function isLetterKey(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode;
+    // Permet les lettres majuscules et minuscules (A-Z, a-z) ainsi que les caractères spéciaux
+    if ((charCode < 65 || (charCode > 90 && charCode < 97) || charCode > 122) && !isSpecialCharacter(charCode)) {
+        return false;
+    }
+    return true;
+}
+
+function isSpecialCharacter(charCode) {
+    // Liste de codes de caractères spéciaux que vous souhaitez autoriser
+    var specialCharacters = [32, 33, 64, 35, 36, 37, 94, 38, 42, 40, 41, 95, 43, 45, 61, 123, 125, 91, 93, 58, 59, 34, 39, 60, 62, 44, 46, 47, 63];
+    return specialCharacters.includes(charCode);
+}
+</script>
+<script>
+
+    function validateEmail(input) {
+        var email = input.value;
+        var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+        if (email.match(emailRegex)) {
+            document.getElementById("email-error-msg").innerText = "";
+        } else {
+            document.getElementById("email-error-msg").innerText = "Veuillez saisir une adresse e-mail valide.";
+            setTimeout(function() {
+                input.value = '';
+                document.getElementById("email-error-msg").innerText = '';
+            }, 3000);
+        }
+    }
+</script>
+
     <script>
         var currentTab = 0; // Current tab is set to be the first tab (0)
         showTab(currentTab); // Display the current tab

@@ -72,6 +72,7 @@
 
             $("#editForm").on('submit', (e) => {
                 e.preventDefault();
+                console.log("Testttttt");
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
